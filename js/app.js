@@ -6,7 +6,7 @@ var obswidth = 5;
 var obsleft = 5;
 var animaterand = 4000;
 var createElementrand = 1500;
-var u, u1;
+var u, u1, j, k, l;
 
 var screenheight = screen.height;
 var screenwidth = screen.width
@@ -61,7 +61,7 @@ function gamestart(e) {
     createelement();
     clouds();
     var counter = setInterval(updatetimer, 100);
-    var t = setInterval(collisioncheck, 10);
+    k = setInterval(collisioncheck, 10);
     var rand = 1000;
     var obs;
 
@@ -100,7 +100,7 @@ function clouds() {
 
 function createelement() {
 
-    console.log(animaterand, createElementrand);
+    //console.log(animaterand, createElementrand);
     obs = document.createElement('div');
     obs.setAttribute('class', 'obstacle');
     child.appendChild(obs);
@@ -152,6 +152,10 @@ function collisioncheck() {
 
 
             window.location.reload();
+            clearTimeout(j);
+            clearInterval(k);
+            clearInterval(l);
+
 
 
         }
