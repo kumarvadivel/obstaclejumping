@@ -17,7 +17,7 @@ var char = document.querySelector(".dino");
 var child = document.querySelector(".sky");
 
 function randomizer() {
-    if (animaterand < 2000) {
+    if (animaterand < 2500) {
         clearInterval(u);
     } else {
         animaterand = animaterand - 100;
@@ -27,7 +27,7 @@ function randomizer() {
 }
 
 function randomizer1() {
-    if (createElementrand < 500) {
+    if (createElementrand < 700) {
         clearInterval(u1);
     } else {
         // animaterand = animaterand - 50;
@@ -38,8 +38,10 @@ function randomizer1() {
 
 //eventlisteners
 window.addEventListener("click", gamestart, { once: true });
-window.addEventListener("keypress", jump);
 
+window.addEventListener("keydown", jump);
+window.addEventListener("keyup", jump1);
+//window.addEventListener("keypress", jump2);
 
 function gamestart(e) {
 
@@ -65,7 +67,7 @@ function gamestart(e) {
 
 function jumpstart() {
     $(".dino").animate({ top: '40vh' }, 200);
-    $(".dino").animate({ top: '60vh' }, 400);
+    $(".dino").animate({ top: '60vh' }, 200);
 }
 
 
@@ -129,14 +131,28 @@ function createelement() {
 function jump(e) {
 
     if (e.which == 32) {
-        var bleep = new Audio();
-        bleep.src = "../img/jump.wav";
-        bleep.play();
+
+        $(".dino").animate({ top: '-=6vh' }, 10, 'easeInSine');
+        // $(".dino").animate({ top: '60vh' }, 400);
+    }
+
+
+}
+
+function jump2(e) {
+
+
+    if (e.which == 32) {
         $(".dino").animate({ top: '40vh' }, 200);
         $(".dino").animate({ top: '60vh' }, 400);
     }
 
 
+}
+
+
+function jump1() {
+    $(".dino").animate({ top: '60vh' }, 100, 'easeInSine');
 }
 
 
