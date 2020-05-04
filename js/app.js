@@ -16,9 +16,6 @@ const highscor = document.querySelector('.high-scr');
 var char = document.querySelector(".dino");
 var child = document.querySelector(".sky");
 
-var u = setInterval(randomizer, 5000);
-var u1 = setInterval(randomizer1, 5000);
-
 function randomizer() {
     if (animaterand < 2000) {
         clearInterval(u);
@@ -45,6 +42,10 @@ window.addEventListener("keypress", jump);
 
 
 function gamestart(e) {
+
+    var u = setInterval(randomizer, 5000);
+    var u1 = setInterval(randomizer1, 5000);
+
     window.addEventListener('click', jumpstart);
     jumpstart();
 
