@@ -146,10 +146,11 @@ function collisioncheck() {
 
     if (vl >= 8 && vl <= 10) {
         if (vl1 <= 60 && vl1 >= 50) {
+            alert("gameover\nyourscore:" + currscore);
             clearInterval(t);
             clearTimeout(j);
 
-            alert("gameover\nyourscore:" + currscore);
+
 
             window.location.reload();
 
