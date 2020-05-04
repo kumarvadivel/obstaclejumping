@@ -4,6 +4,8 @@ var highscore = 0;
 var obsheight = 20;
 var obswidth = 5;
 var obsleft = 5;
+var animaterand = 5000; //decrement upto 3000
+var createElementrand = 1500; //decrement upto 500
 
 var screenheight = screen.height;
 var screenwidth = screen.width
@@ -14,8 +16,28 @@ const highscor = document.querySelector('.high-scr');
 var char = document.querySelector(".dino");
 var child = document.querySelector(".sky");
 
+var u = setInterval(randomizer, 5000);
+var u1 = setInterval(randomizer1, 5000);
 
+function randomizer() {
+    if (animaterand < 2000) {
+        clearInterval(u);
+    } else {
+        animaterand = animaterand - 100;
+        // createElementrand--;
+    }
 
+}
+
+function randomizer1() {
+    if (createElementrand < 500) {
+        clearInterval(u1);
+    } else {
+        // animaterand = animaterand - 50;
+        createElementrand = createElementrand - 50;
+    }
+
+}
 
 //eventlisteners
 window.addEventListener("click", gamestart, { once: true });
@@ -29,7 +51,7 @@ function gamestart(e) {
     createelement();
     clouds();
     var counter = setInterval(updatetimer, 100);
-    var t = setInterval(collisioncheck, 50);
+    var t = setInterval(collisioncheck, 10);
     var rand = 1000;
     var obs;
 
@@ -57,19 +79,6 @@ function updatetimer() {
 
 }
 
-/*function highscore() {
-    if (currentscore > highscore) {
-
-        localStorage.setItem("highscore", currentscore);
-    }
-}*/
-
-
-
-//functions
-//var f = setRandomInterval(function() { console.log("hello"); }, 1000, 10000);
-//
-
 
 
 
@@ -86,14 +95,13 @@ function clouds() {
 
 
 function createelement() {
-    //var x=document.querySelector('.clouds');
 
+    console.log(animaterand, createElementrand);
     obs = document.createElement('div');
-    //obs.classList.add(obstacle);
     obs.setAttribute('class', 'obstacle');
     child.appendChild(obs);
 
-    $('.obstacle').animate({ left: "-5vw" }, 5000, function() {
+    $('.obstacle').animate({ left: "-5vw" }, animaterand, function() {
 
         $(this).remove();
 
@@ -102,7 +110,8 @@ function createelement() {
     });
 
 
-    j = setTimeout(createelement, Math.floor(Math.random() * (2000 - 1000 + 1) + 1000));
+    j = setTimeout(createelement, Math.floor(Math.random() * (3000 - 1000 + 1) + createElementrand));
+
     //  $('.obstacle').css({ left: "105%" });
 
     // obs.remove();
@@ -152,7 +161,7 @@ function collisioncheck() {
     var e = Math.round(a.top);
     var vl = Math.round((c / w) * 100);
     var vl1 = Math.round((e / h) * 100);
-    console.log(vl);
+    //  console.log(vl);
     // alert(vl1 + "vh");
     if (vl >= 8 && vl <= 10) {
         if (vl1 <= 60 && vl1 >= 50) {
