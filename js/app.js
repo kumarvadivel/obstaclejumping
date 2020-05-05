@@ -71,7 +71,8 @@ window.addEventListener("keyup", (event) => {
 });
 
 function jumpstart() {
-
+    $('.dino').animate({ 'top': '40vh' }, 200, 'swing');
+    $('.dino').animate({ 'top': '60vh' }, 400, 'swing');
 }
 
 function gamestart(e) {
