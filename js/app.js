@@ -37,17 +37,33 @@ function randomizer1() {
 }
 
 var keyhold = 0;
+var pi = 0;
 //eventlisteners
 window.addEventListener("click", gamestart, { once: true });
-window.addEventListener("click", jumpstart, { once: false });
-window.addEventListener("keydown", jumpstart, { once: false });
+let longpresstimeout = -1;
+const longpressdelay = 150;
+window.addEventListener("keydown", (event) => {
+    longpresstimeout = setTimeout(() => {
+        $('.dino').animate({ 'top': '30vh' }, 300, 'swing');
+        $('.dino').animate({ 'top': '60vh' }, 500, 'swing');
+        console.log("longpress");
+        pi = 1
 
-function jumpstart(e) {
+    }, longpressdelay)
+}, { once: false })
+window.addEventListener("keyup", (event) => {
+    clearTimeout(longpresstimeout);
+    if (pi == 0) {
+        $('.dino').animate({ 'top': '40vh' }, 200, 'swing');
+        $('.dino').animate({ 'top': '60vh' }, 400, 'swing');
+        console.log("shorpress");
+        pi = 0;
+    } else {
+        pi = 0;
+    }
 
-    $(".dino").animate({ top: '40vh' }, 200, 'swing');
-    $(".dino").animate({ top: '60vh' }, 400, 'swing');
-}
 
+});
 
 
 function gamestart(e) {
@@ -56,7 +72,7 @@ function gamestart(e) {
     u1 = setInterval(randomizer1, 5000);
 
 
-    jumpstart();
+    //jumpstart();
 
     createelement();
     clouds();
