@@ -43,28 +43,36 @@ window.addEventListener("click", gamestart, { once: true });
 let longpresstimeout = -1;
 const longpressdelay = 150;
 window.addEventListener("keydown", (event) => {
-    longpresstimeout = setTimeout(() => {
-        $('.dino').animate({ 'top': '30vh' }, 300, 'swing');
-        $('.dino').animate({ 'top': '60vh' }, 500, 'swing');
-        console.log("longpress");
-        pi = 1
+    if (event.which == 32) {
+        longpresstimeout = setTimeout(() => {
+            $('.dino').animate({ 'top': '30vh' }, 300, 'swing');
+            $('.dino').animate({ 'top': '60vh' }, 500, 'swing');
+            console.log("longpress");
+            pi = 1
 
-    }, longpressdelay)
+        }, longpressdelay)
+    }
+
 }, { once: false })
 window.addEventListener("keyup", (event) => {
     clearTimeout(longpresstimeout);
-    if (pi == 0) {
-        $('.dino').animate({ 'top': '40vh' }, 200, 'swing');
-        $('.dino').animate({ 'top': '60vh' }, 400, 'swing');
-        console.log("shorpress");
-        pi = 0;
-    } else {
-        pi = 0;
+    if (event.which == 32) {
+        if (pi == 0) {
+            $('.dino').animate({ 'top': '40vh' }, 200, 'swing');
+            $('.dino').animate({ 'top': '60vh' }, 400, 'swing');
+            console.log("shorpress");
+            pi = 0;
+        } else {
+            pi = 0;
+        }
     }
 
 
 });
 
+function jumpstart() {
+
+}
 
 function gamestart(e) {
 
@@ -72,7 +80,7 @@ function gamestart(e) {
     u1 = setInterval(randomizer1, 5000);
 
 
-    //jumpstart();
+    jumpstart();
 
     createelement();
     clouds();
